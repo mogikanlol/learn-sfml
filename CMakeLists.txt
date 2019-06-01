@@ -28,10 +28,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${SFML2_DIRS}/include)
 
 
 target_link_libraries(${PROJECT_NAME} 
-		${SFML2_DIRS}/lib/sfml-system.lib
-        ${SFML2_DIRS}/lib/sfml-graphics.lib
-        ${SFML2_DIRS}/lib/sfml-window.lib
-        ${SFML2_DIRS}/lib/sfml-audio.lib)
+		${SFML2_DIRS}/lib/sfml-system-d.lib
+        ${SFML2_DIRS}/lib/sfml-graphics-d.lib
+        ${SFML2_DIRS}/lib/sfml-window-d.lib
+        ${SFML2_DIRS}/lib/sfml-audio-d.lib)
 
 set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/out )
 
