@@ -33,6 +33,8 @@ target_link_libraries(${PROJECT_NAME}
         ${SFML2_DIRS}/lib/sfml-window-d.lib
         ${SFML2_DIRS}/lib/sfml-audio-d.lib)
 
-set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/out )
+#set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/out )
+
+set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/build")
 
 
