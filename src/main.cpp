@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Window.hpp"
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(640, 480), "First window!");
@@ -48,5 +49,4 @@ int main() {
 		window.display();
 	}
 
-	return 0;
 }
