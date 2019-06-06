@@ -5,30 +5,30 @@
 class Window {
 public:
 	Window();
-	Window(const std::string& title, const sf::Vector2u& size);
+	Window(const std::string& l_title, const sf::Vector2u& l_size);
 	~Window();
 
-	void beginDraw(); // Clear the window
-	void endDraw(); // Display the changes
+	void BeginDraw(); // Clear the window
+	void EndDraw(); // Display the changes
 
-	void update();
+	void Update();
 
-	bool isDone();
-	bool isFullScreen();
-	sf::Vector2u getWindowSize();
+	bool IsDone();
+	bool IsFullScreen();
+	sf::Vector2u GetWindowSize();
 
-	void toggleFullScreen();
+	void ToggleFullScreen();
 
-	void draw(sf::Drawable& drawable);
+	void Draw(sf::Drawable& l_drawable);
 
 private:
-	void setup(const std::string& title, const sf::Vector2u& size);
-	void destroy();
-	void create();
+	void Setup(const std::string& l_title, const sf::Vector2u& l_size);
+	void Destroy();
+	void Create();
 
-	sf::RenderWindow window;
-	sf::Vector2u windowSize;
-	std::string windowTitle;
-	bool isWindowDone;
-	bool isWindowFullScreen;
+	sf::RenderWindow m_window;
+	sf::Vector2u m_windowSize;
+	std::string m_windowTitle;
+	bool m_isDone;
+	bool m_isFullScreen;
 };

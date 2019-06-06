@@ -1,75 +1,75 @@
 #include "Window.hpp"
 
 Window::Window() {
-	setup("Window", sf::Vector2u(640, 480));
+	Setup("Window", sf::Vector2u(640, 480));
 }
 
-Window::Window(const std::string& title, const sf::Vector2u& size) {
-	setup(title, size);
+Window::Window(const std::string& l_title, const sf::Vector2u& l_size) {
+	Setup(l_title, l_size);
 }
 
 Window::~Window() {
-	destroy();
+	Destroy();
 }
 
-void Window::setup(const std::string& title, const sf::Vector2u& size) {
-	this->windowTitle = title;
-	this->windowSize = size;
-	this->isWindowFullScreen = false;
-	this->isWindowDone = false;
-	create();
+void Window::Setup(const std::string& l_title, const sf::Vector2u& l_size) {
+	m_windowTitle = l_title;
+	m_windowSize = l_size;
+	m_isFullScreen = false;
+	m_isDone = false;
+	Create();
 }
 
-void Window::create() {
+void Window::Create() {
 	using namespace sf;
-	auto style = isWindowFullScreen ? Style::Fullscreen : Style::Default;
+	auto style = m_isFullScreen ? Style::Fullscreen : Style::Default;
 
-	this->window.create({ windowSize.x, windowSize.y, 32 }, windowTitle, style);
+	m_window.create({ m_windowSize.x, m_windowSize.y, 32 }, m_windowTitle, style);
 }
 
-void Window::destroy() {
-	this->window.close();
+void Window::Destroy() {
+	m_window.close();
 }
 
-void Window::update() {
+void Window::Update() {
 	sf::Event event;
 
-	while (this->window.pollEvent(event)) {
+	while (this->m_window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
-			this->isWindowDone = true;
+			this->m_isDone = true;
 		}
 		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F5) {
-			toggleFullScreen();
+			ToggleFullScreen();
 		}
 	}
 }
 
-void Window::toggleFullScreen() {
-	isWindowFullScreen = !isWindowFullScreen;
-	destroy();
-	create();
+void Window::ToggleFullScreen() {
+	m_isFullScreen = !m_isFullScreen;
+	Destroy();
+	Create();
 }
 
-void Window::beginDraw() {
-	window.clear(sf::Color::Black);
+void Window::BeginDraw() {
+	m_window.clear(sf::Color::Black);
 }
 
-void Window::endDraw() {
-	window.display();
+void Window::EndDraw() {
+	m_window.display();
 }
 
-bool Window::isDone() {
-	return this->isWindowDone;
+bool Window::IsDone() {
+	return m_isDone;
 }
 
-bool Window::isFullScreen() {
-	return this->isWindowFullScreen;
+bool Window::IsFullScreen() {
+	return m_isFullScreen;
 }
 
-sf::Vector2u Window::getWindowSize() {
-	return this->windowSize;
+sf::Vector2u Window::GetWindowSize() {
+	return m_windowSize;
 }
 
-void Window::draw(sf::Drawable& drawable) {
-	this->window.draw(drawable);
+void Window::Draw(sf::Drawable& l_drawable) {
+	m_window.draw(l_drawable);
 }
