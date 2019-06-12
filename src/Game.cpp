@@ -3,7 +3,7 @@
 Game::Game() : m_window("Chapter 2", sf::Vector2u(800, 600)) {
 	m_kappaTexture.loadFromFile("assets/Kappa.png");
 	m_kappa.setTexture(m_kappaTexture);
-	m_increment = sf::Vector2i(4, 4);
+	m_increment = sf::Vector2i(400, 400);
 }
 
 Game::~Game() {}
@@ -31,9 +31,12 @@ void Game::MoveKappa() {
 		(m_kappa.getPosition().y < 0 && m_increment.y < 0)) {
 		m_increment.y = -m_increment.y;
 	}
+
+	float fElapsed = m_elapsed.asSeconds();
+
 	m_kappa.setPosition(
-		m_kappa.getPosition().x + m_increment.x,
-		m_kappa.getPosition().y + m_increment.y);
+		m_kappa.getPosition().x + (m_increment.x * fElapsed),
+		m_kappa.getPosition().y + (m_increment.y * fElapsed));
 }
 
 void Game::Render() {
@@ -44,4 +47,12 @@ void Game::Render() {
 
 Window* Game::GetWindow() {
 	return &this->m_window;
+}
+
+sf::Time Game::GetElapsed() {
+	return m_elapsed;
+}
+
+void Game::RestartClock() {
+	m_elapsed += m_clock.restart();
 }
