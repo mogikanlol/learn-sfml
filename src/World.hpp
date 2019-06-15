@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Snake.hpp"
+#include "Apple.hpp"
 
 class World {
 
@@ -15,6 +16,7 @@ public:
 
 private:
 	void CheckCollisions();
+	void SpawnApple();
 
 private:
 	int blockSize;
@@ -22,4 +24,5 @@ private:
 	int height;
 
 	Snake snake;
+	Apple apple;
 };

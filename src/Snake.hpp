@@ -17,6 +17,7 @@ public:
 	void HandleInput();
 	sf::Vector2f GetPosition();
 
+	std::vector<sf::RectangleShape>& GetBody();
 	void Reset();
 private:
 	std::vector<sf::RectangleShape> body;

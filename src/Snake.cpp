@@ -49,6 +49,11 @@ void Snake::Draw(sf::RenderWindow& renderWindow) {
 	}
 }
 
+std::vector<sf::RectangleShape>& Snake::GetBody()
+{
+	return body;
+}
+
 void Snake::Reset() {
 	body.clear();
 
@@ -75,7 +80,11 @@ void Snake::Reset() {
 }
 
 void Snake::Grow() {
-
+	sf::RectangleShape shape;
+	shape.setSize(sf::Vector2f(blockSize - 1, blockSize - 1));
+	shape.setPosition(body.back().getPosition() - dir);
+	
+	body.push_back(shape);
 }
 
 sf::Vector2f Snake::GetPosition() {

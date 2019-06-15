@@ -1,12 +1,12 @@
 #include "Game.hpp"
 
-Game::Game() : m_window("Chapter 2", sf::Vector2u(800, 600)), world(800, 600, 20) {
+Game::Game() : m_window("The Snake", sf::Vector2u(800, 600)), world(800, 600, 20) {
 }
 
 Game::~Game() {}
 
 void Game::Run() {
-	float timeStep = 0.15;
+	float timeStep = 0.12;
 	while (!m_window.IsDone()) {
 		HandleInput();
 
