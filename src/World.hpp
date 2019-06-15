@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Snake.hpp"
 #include "Apple.hpp"
+#include "Border.hpp"
 
 class World {
 
@@ -20,9 +21,8 @@ private:
 
 private:
 	int blockSize;
-	int width;
-	int height;
 
 	Snake snake;
 	Apple apple;
+	Border border;
 };

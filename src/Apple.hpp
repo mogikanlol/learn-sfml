@@ -6,7 +6,7 @@ struct Apple {
 	
 	Apple(int size) : eated(false) {
 		shape.setFillColor(sf::Color::Red);
-		shape.setSize(sf::Vector2f(size - 1, size - 1));
+		shape.setRadius(size/2 - 1);
 	};
 
 	void Draw(sf::RenderWindow& renderWindow) {
@@ -23,6 +23,6 @@ struct Apple {
 		return shape.getPosition();
 	}
 
-	sf::RectangleShape shape;
+	sf::CircleShape shape;
 	bool eated;
 };
