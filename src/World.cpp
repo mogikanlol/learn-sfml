@@ -10,11 +10,12 @@ World::World(int width, int height, int l_blockSize):
 World::~World() {}
 
 void World::Update() {
+	
+	snake.Update();
+	CheckCollisions();
 	if (apple.eated) {
 		SpawnApple();
 	}
-	CheckCollisions();
-	snake.Update();
 }
 
 void World::Draw(sf::RenderWindow& window) {
@@ -37,6 +38,15 @@ void World::CheckCollisions() {
 		snake.Reset();
 	}
 
+	if (snake.GetBody().size() > 4) {
+		auto body = snake.GetBody();
+		for (int i = 4; i < body.size(); i++) {
+			if (body[0].getPosition() == body[i].getPosition()) {
+				snake.Reset();
+			}
+		}
+	}
+
 	if (snakePosition.x == applePosition.x && snakePosition.y == applePosition.y) {
 		snake.Grow();
 		apple.eated = true;
@@ -54,8 +64,8 @@ void World::SpawnApple() {
 	sf::Vector2f newPosition(x , y);
 
 	for (auto& s : snake.GetBody()) {
-		if (s.getPosition().x == newPosition.x && s.getPosition().y == newPosition.y) {
-			SpawnApple();
+		if (s.getPosition() == newPosition) {
+			return;
 		}
 	}
 
