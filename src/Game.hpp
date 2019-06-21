@@ -14,10 +14,14 @@ private:
 	void Update();
 	void Render();
 
+	void ResetTimestep();
+
 private:
-	Window m_window;
-	sf::Clock m_clock;
-	sf::Time m_elapsed;
+	Window window;
+	sf::Clock clock;
+	sf::Time elapsedTime;
 	
 	World world;
+
+	float timeStep;
 };

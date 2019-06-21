@@ -18,23 +18,8 @@ void Snake::Update() {
 
 	}
 
-	body[0].setPosition(body[0].getPosition() + dir);
+	body[0].setPosition(body[0].getPosition() + vectorDir);
 
-}
-
-void Snake::HandleInput() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		dir = sf::Vector2f(0, -blockSize);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		dir = sf::Vector2f(0, blockSize);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		dir = sf::Vector2f(-blockSize, 0);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		dir = sf::Vector2f(blockSize, 0);
-	}
 }
 
 void Snake::Draw(sf::RenderWindow& renderWindow) {
@@ -52,6 +37,36 @@ void Snake::Draw(sf::RenderWindow& renderWindow) {
 std::vector<sf::RectangleShape>& Snake::GetBody()
 {
 	return body;
+}
+
+void Snake::setDirection(Direction direction)
+{
+	switch (direction) {
+		case Direction::Up:
+			if (currentDirection != Direction::Down) {
+				vectorDir = sf::Vector2f(0, -blockSize);
+				currentDirection = Direction::Up;
+			}
+			break;
+		case Direction::Down:
+			if (currentDirection != Direction::Up) {
+				vectorDir = sf::Vector2f(0, blockSize);
+				currentDirection = Direction::Down;
+			}
+			break;
+		case Direction::Left:
+			if (currentDirection != Direction::Right) {
+				vectorDir = sf::Vector2f(-blockSize, 0);
+				currentDirection = Direction::Left;
+			}
+			break;
+		case Direction::Right:
+			if (currentDirection != Direction::Left) {
+				vectorDir = sf::Vector2f(blockSize, 0);
+				currentDirection = Direction::Right;
+			}
+			break;
+	}
 }
 
 void Snake::Reset() {
@@ -72,7 +87,8 @@ void Snake::Reset() {
 	tail.setSize(sf::Vector2f(blockSize - 1, blockSize - 1));
 	tail.setPosition(startX - blockSize * 2, startY);
 
-	dir = sf::Vector2f(blockSize, 0);
+	vectorDir = sf::Vector2f(blockSize, 0);
+	currentDirection = Direction::Right;
 
 	body.push_back(head);
 	body.push_back(bone);
@@ -82,7 +98,7 @@ void Snake::Reset() {
 void Snake::Grow() {
 	sf::RectangleShape shape;
 	shape.setSize(sf::Vector2f(blockSize - 1, blockSize - 1));
-	shape.setPosition(body.back().getPosition() - dir);
+	shape.setPosition(body.back().getPosition() - vectorDir);
 	
 	body.push_back(shape);
 }

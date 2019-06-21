@@ -4,7 +4,7 @@
 #include <vector>
 
 enum class Direction {
-	None, UP, Down, Left, Right
+	None, Up, Down, Left, Right
 };
 
 class Snake {
@@ -18,9 +18,11 @@ public:
 	sf::Vector2f GetPosition();
 
 	std::vector<sf::RectangleShape>& GetBody();
+	void setDirection(Direction direction);
 	void Reset();
 private:
 	std::vector<sf::RectangleShape> body;
-	sf::Vector2f dir;
+	sf::Vector2f vectorDir;
 	int blockSize;
+	Direction currentDirection;
 };

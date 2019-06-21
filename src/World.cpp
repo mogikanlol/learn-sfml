@@ -25,7 +25,18 @@ void World::Draw(sf::RenderWindow& window) {
 }
 
 void World::HandleInput() {
-	snake.HandleInput();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		snake.setDirection(Direction::Up);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		snake.setDirection(Direction::Down);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		snake.setDirection(Direction::Left);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		snake.setDirection(Direction::Right);
+	}
 }
 
 void World::CheckCollisions() {

@@ -1,19 +1,19 @@
 #include "Game.hpp"
 
-Game::Game() : m_window("The Snake", sf::Vector2u(800, 600)), world(800, 600, 20) {
+Game::Game() : window("The Snake", sf::Vector2u(800, 600)), world(800, 600, 20) {
+	ResetTimestep();
 }
 
 Game::~Game() {}
 
 void Game::Run() {
-	float timeStep = 0.12;
-	while (!m_window.IsDone()) {
+	while (window.IsOpen()) {
 		HandleInput();
 
-		if (m_elapsed.asSeconds() > timeStep) {
+		if (elapsedTime.asSeconds() > timeStep) {
 			Update();
 			Render();
-			m_elapsed -= sf::seconds(timeStep);
+			elapsedTime -= sf::seconds(timeStep);
 		}
 
 		RestartClock();
@@ -21,20 +21,31 @@ void Game::Run() {
 }
 
 void Game::Update() {
-	m_window.Update();
+	window.Update();
 	world.Update();
 }
 
 void Game::HandleInput() {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+		timeStep = 0.06;
+	}
+	else {
+		ResetTimestep();
+	}
+
 	world.HandleInput();
 }
 
 void Game::Render() {
-	m_window.BeginDraw();
-	world.Draw(m_window.getRenderWindow());
-	m_window.EndDraw();
+	window.BeginDraw();
+	world.Draw(window.getRenderWindow());
+	window.EndDraw();
 }
 
 void Game::RestartClock() {
-	m_elapsed += m_clock.restart();
+	elapsedTime += clock.restart();
+}
+
+void Game::ResetTimestep() {
+	timeStep = 0.12;
 }
