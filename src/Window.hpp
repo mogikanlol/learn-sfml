@@ -8,29 +8,29 @@ public:
 	Window(const std::string& title, const sf::Vector2u& size);
 	~Window();
 
-	void BeginDraw(); // Clear the window
-	void EndDraw(); // Display the changes
+	void beginDraw();
+	void endDraw();
 
-	void Update();
+	void update();
 
-	bool IsOpen();
-	bool IsFullScreen();
-	sf::Vector2u GetWindowSize();
+	bool isOpened();
+	bool isFullScreen();
+	sf::Vector2u getWindowSize();
 
-	void ToggleFullScreen();
+	void toggleFullScreen();
 
-	void Draw(sf::Drawable& drawable);
+	void draw(sf::Drawable& drawable);
 
 	sf::RenderWindow& getRenderWindow();
 
 private:
-	void Setup(const std::string& title, const sf::Vector2u& size);
-	void Destroy();
-	void Create();
+	void setup(const std::string& title, const sf::Vector2u& size);
+	void destroy();
+	void create();
 
 	sf::RenderWindow window;
 	sf::Vector2u windowSize;
 	std::string windowTitle;
-	bool open;
+	bool opened;
 	bool fullScreenEnabled;
 };

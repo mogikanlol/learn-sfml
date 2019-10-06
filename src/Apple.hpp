@@ -9,17 +9,17 @@ struct Apple {
 		shape.setRadius(size/2 - 1);
 	};
 
-	void Draw(sf::RenderWindow& renderWindow) {
+	void draw(sf::RenderWindow& renderWindow) {
 		if (!eated) {
 			renderWindow.draw(shape);
 		}
 	}
 
-	void SetPosition(sf::Vector2f position) {
+	void setPosition(sf::Vector2f position) {
 		shape.setPosition(position);
 	}
 
-	sf::Vector2f GetPosition() {
+	sf::Vector2f getPosition() {
 		return shape.getPosition();
 	}
 

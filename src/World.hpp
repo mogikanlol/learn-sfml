@@ -8,16 +8,16 @@
 class World {
 
 public:
-	World(int width, int height, int l_blockSize);
+	World(int width, int height, int blockSize);
 	~World();
 
-	void Update();
-	void Draw(sf::RenderWindow& window);
-	void HandleInput();
+	void update();
+	void draw(sf::RenderWindow& window);
+	void handleInput();
 
 private:
-	void CheckCollisions();
-	void SpawnApple();
+	void checkCollisions();
+	void spawnApple();
 
 private:
 	int blockSize;

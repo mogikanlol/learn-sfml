@@ -28,21 +28,21 @@ Border::Border(int width, int height, int blockSize): blockSize(blockSize) {
 
 }
 
-void Border::Draw(sf::RenderWindow& renderWindow) {
+void Border::draw(sf::RenderWindow& renderWindow) {
 	for (auto& b : borders) {
 		renderWindow.draw(b);
 	}
 }
 
-int Border::Top() {
+int Border::getTop() {
 	return top;
 }
-int Border::Bottom() {
+int Border::getBottom() {
 	return bottom;
 }
-int Border::Left() {
+int Border::getLeft() {
 	return left;
 }
-int Border::Right() {
+int Border::getRight() {
 	return right;
 }

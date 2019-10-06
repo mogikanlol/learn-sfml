@@ -9,12 +9,12 @@ public:
 	void Run();
 
 private:
-	void RestartClock();
-	void HandleInput();
-	void Update();
-	void Render();
+	void restartClock();
+	void handleInput();
+	void update();
+	void render();
 
-	void ResetTimestep();
+	void resetTimestep();
 
 private:
 	Window window;

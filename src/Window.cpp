@@ -1,79 +1,79 @@
 #include "Window.hpp"
 
 Window::Window() {
-	Setup("Window", sf::Vector2u(640, 480));
+	setup("Window", sf::Vector2u(640, 480));
 }
 
 Window::Window(const std::string& title, const sf::Vector2u& size) {
-	Setup(title, size);
+	setup(title, size);
 }
 
 Window::~Window() {
-	Destroy();
+	destroy();
 }
 
-void Window::Setup(const std::string& title, const sf::Vector2u& size) {
+void Window::setup(const std::string& title, const sf::Vector2u& size) {
 	windowTitle = title;
 	windowSize = size;
 	fullScreenEnabled = false;
-	open = true;
-	Create();
+	opened = true;
+	create();
 }
 
-void Window::Create() {
+void Window::create() {
 	using namespace sf;
 	auto style = fullScreenEnabled ? Style::Fullscreen : Style::Default;
 
 	window.create({ windowSize.x, windowSize.y, 32 }, windowTitle, style);
 }
 
-void Window::Destroy() {
+void Window::destroy() {
 	window.close();
 }
 
-void Window::Update() {
+void Window::update() {
 	sf::Event event;
 	
 	while (this->window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
-			this->open = false;
+			this->opened = false;
 		}
 		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F5) {
-			ToggleFullScreen();
+			toggleFullScreen();
 		}
 		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-			this->open = false;
+			this->opened = false;
 		}
 	}
 }
 
-void Window::ToggleFullScreen() {
+void Window::toggleFullScreen() {
 	fullScreenEnabled = !fullScreenEnabled;
-	Destroy();
-	Create();
+	destroy();
+	create();
 }
 
-void Window::BeginDraw() {
+void Window::beginDraw() {
 	window.clear(sf::Color::Black);
 }
 
-void Window::EndDraw() {
+void Window::endDraw() {
 	window.display();
 }
 
-bool Window::IsOpen() {
-	return open;
+bool Window::isOpened() {
+	return opened;
 }
 
-bool Window::IsFullScreen() {
+bool Window::isFullScreen() {
 	return fullScreenEnabled;
 }
 
-sf::Vector2u Window::GetWindowSize() {
+sf::Vector2u Window::getWindowSize() {
 	return windowSize;
 }
 
-void Window::Draw(sf::Drawable& drawable) {
+void Window::draw(sf::Drawable& drawable) {
 	window.draw(drawable);
 }
 

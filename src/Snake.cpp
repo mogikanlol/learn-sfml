@@ -1,12 +1,12 @@
 #include "Snake.hpp"
 
-Snake::Snake(int l_blockSize): blockSize(l_blockSize) {
-	Reset();
+Snake::Snake(int blockSize): blockSize(blockSize) {
+	reset();
 }
 
 Snake::~Snake() {}
 
-void Snake::Update() {
+void Snake::update() {
 	if (body.size() > 1) {
 
 		sf::RectangleShape shape;
@@ -22,7 +22,7 @@ void Snake::Update() {
 
 }
 
-void Snake::Draw(sf::RenderWindow& renderWindow) {
+void Snake::draw(sf::RenderWindow& renderWindow) {
 	for (int i = 0; i < body.size(); i++) {
 		if (i == 0) {
 			body[i].setFillColor(sf::Color::Yellow);
@@ -34,7 +34,7 @@ void Snake::Draw(sf::RenderWindow& renderWindow) {
 	}
 }
 
-std::vector<sf::RectangleShape>& Snake::GetBody()
+std::vector<sf::RectangleShape>& Snake::getBody()
 {
 	return body;
 }
@@ -69,7 +69,7 @@ void Snake::setDirection(Direction direction)
 	}
 }
 
-void Snake::Reset() {
+void Snake::reset() {
 	body.clear();
 
 	int startX = blockSize * 5;
@@ -95,7 +95,7 @@ void Snake::Reset() {
 	body.push_back(tail);
 }
 
-void Snake::Grow() {
+void Snake::grow() {
 	sf::RectangleShape shape;
 	shape.setSize(sf::Vector2f(blockSize - 1, blockSize - 1));
 	shape.setPosition(body.back().getPosition() - vectorDir);
@@ -103,6 +103,6 @@ void Snake::Grow() {
 	body.push_back(shape);
 }
 
-sf::Vector2f Snake::GetPosition() {
+sf::Vector2f Snake::getPosition() {
 	return body[0].getPosition();
 }

@@ -1,30 +1,30 @@
 #include "World.hpp"
 
-World::World(int width, int height, int l_blockSize): 
-	blockSize(l_blockSize), snake(blockSize), apple(l_blockSize), border(width, height, blockSize)
+World::World(int width, int height, int blockSize):
+	blockSize(blockSize), snake(blockSize), apple(blockSize), border(width, height, blockSize)
 {
 	srand(time(nullptr));
-	SpawnApple();
+	spawnApple();
 }
 
 World::~World() {}
 
-void World::Update() {
+void World::update() {
 	
-	snake.Update();
-	CheckCollisions();
+	snake.update();
+	checkCollisions();
 	if (apple.eated) {
-		SpawnApple();
+		spawnApple();
 	}
 }
 
-void World::Draw(sf::RenderWindow& window) {
-	border.Draw(window);
-	snake.Draw(window);
-	apple.Draw(window);
+void World::draw(sf::RenderWindow& window) {
+	border.draw(window);
+	snake.draw(window);
+	apple.draw(window);
 }
 
-void World::HandleInput() {
+void World::handleInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		snake.setDirection(Direction::Up);
 	}
@@ -39,47 +39,47 @@ void World::HandleInput() {
 	}
 }
 
-void World::CheckCollisions() {
+void World::checkCollisions() {
 	
-	sf::Vector2f snakePosition = snake.GetPosition();
-	sf::Vector2f applePosition = apple.GetPosition();
+	sf::Vector2f snakePosition = snake.getPosition();
+	sf::Vector2f applePosition = apple.getPosition();
 	
-	if (snakePosition.x >= border.Right() || snakePosition.x < border.Left() ||
-		snakePosition.y >= border.Bottom() || snakePosition.y < border.Top()) {
-		snake.Reset();
+	if (snakePosition.x >= border.getRight() || snakePosition.x < border.getLeft() ||
+		snakePosition.y >= border.getBottom() || snakePosition.y < border.getTop()) {
+		snake.reset();
 	}
 
-	if (snake.GetBody().size() > 4) {
-		auto body = snake.GetBody();
+	if (snake.getBody().size() > 4) {
+		auto body = snake.getBody();
 		for (int i = 4; i < body.size(); i++) {
 			if (body[0].getPosition() == body[i].getPosition()) {
-				snake.Reset();
+				snake.reset();
 			}
 		}
 	}
 
 	if (snakePosition.x == applePosition.x && snakePosition.y == applePosition.y) {
-		snake.Grow();
+		snake.grow();
 		apple.eated = true;
 	}
 }
 
-void World::SpawnApple() {
+void World::spawnApple() {
 	
-	int xRange = border.Right() - border.Left();
-	int yRange = border.Bottom() - border.Top();
+	int xRange = border.getRight() - border.getLeft();
+	int yRange = border.getBottom() - border.getTop();
 
 	float x = (rand() % (xRange / blockSize)) * blockSize + blockSize;
 	float y = (rand() % (yRange/ blockSize)) * blockSize + blockSize;
 
 	sf::Vector2f newPosition(x , y);
 
-	for (auto& s : snake.GetBody()) {
+	for (auto& s : snake.getBody()) {
 		if (s.getPosition() == newPosition) {
 			return;
 		}
 	}
 
-	apple.SetPosition(newPosition);
+	apple.setPosition(newPosition);
 	apple.eated = false;
 }

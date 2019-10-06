@@ -9,17 +9,17 @@ enum class Direction {
 
 class Snake {
 public:
-	Snake(int l_blockSize);
+	Snake(int blockSize);
 	~Snake();
-	void Update();
-	void Draw(sf::RenderWindow& renderWindow);
-	void Grow();
-	void HandleInput();
-	sf::Vector2f GetPosition();
+	void update();
+	void draw(sf::RenderWindow& renderWindow);
+	void grow();
+	void handleInput();
+	sf::Vector2f getPosition();
 
-	std::vector<sf::RectangleShape>& GetBody();
+	std::vector<sf::RectangleShape>& getBody();
 	void setDirection(Direction direction);
-	void Reset();
+	void reset();
 private:
 	std::vector<sf::RectangleShape> body;
 	sf::Vector2f vectorDir;

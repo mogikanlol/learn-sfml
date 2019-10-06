@@ -6,12 +6,12 @@ class Border {
 public:
 	Border(int width, int height, int blockSize);
 
-	void Draw(sf::RenderWindow& renderWindow);
+	void draw(sf::RenderWindow& renderWindow);
 
-	int Top();
-	int Bottom();
-	int Left();
-	int Right();
+	int getTop();
+	int getBottom();
+	int getLeft();
+	int getRight();
 
 private:
 	int top;
