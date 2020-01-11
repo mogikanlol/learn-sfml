@@ -1,6 +1,11 @@
-.vs/
-CMakeBuilds/
+# Binaries
+bin/
+bin-int/
 
-*.ilk
-*.pdb
-*.exe
+
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
