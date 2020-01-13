@@ -14,7 +14,6 @@ public:
 	void update();
 	void draw(sf::RenderWindow& renderWindow);
 	void grow();
-	void handleInput();
 	sf::Vector2f getPosition();
 
 	std::vector<sf::RectangleShape>& getBody();

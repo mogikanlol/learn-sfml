@@ -1,6 +1,6 @@
 #pragma once
 #include "Window.hpp"
-#include "World.hpp"
+#include "snake/World.hpp"
 
 class Game {
 public:
@@ -14,14 +14,10 @@ private:
 	void update();
 	void render();
 
-	void resetTimestep();
-
 private:
 	Window window;
 	sf::Clock clock;
 	sf::Time elapsedTime;
 	
 	World world;
-
-	float timeStep;
 };

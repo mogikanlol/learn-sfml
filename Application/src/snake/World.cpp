@@ -9,12 +9,15 @@ World::World(int width, int height, int blockSize):
 
 World::~World() {}
 
-void World::update() {
-	
-	snake.update();
-	checkCollisions();
-	if (apple.eated) {
-		spawnApple();
+void World::update(float deltaTime) {
+	elapsedTime += sf::seconds(deltaTime);
+	if (elapsedTime.asSeconds() > timeStep) {
+		snake.update();
+		checkCollisions();
+		if (apple.eated) {
+			spawnApple();
+		}
+		elapsedTime -= sf::seconds(timeStep);
 	}
 }
 
@@ -25,6 +28,13 @@ void World::draw(sf::RenderWindow& window) {
 }
 
 void World::handleInput() {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+		timeStep = 0.06;
+	}
+	else {
+		resetTimestep();
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		snake.setDirection(Direction::Up);
 	}
@@ -82,4 +92,8 @@ void World::spawnApple() {
 
 	apple.setPosition(newPosition);
 	apple.eated = false;
+}
+
+void World::resetTimestep() {
+	timeStep = 0.12;
 }

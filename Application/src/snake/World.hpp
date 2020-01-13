@@ -11,16 +11,19 @@ public:
 	World(int width, int height, int blockSize);
 	~World();
 
-	void update();
+	void update(float elapsedTime);
 	void draw(sf::RenderWindow& window);
 	void handleInput();
 
 private:
 	void checkCollisions();
 	void spawnApple();
+	void resetTimestep();
 
 private:
 	int blockSize;
+	float timeStep;
+	sf::Time elapsedTime;
 
 	Snake snake;
 	Apple apple;
