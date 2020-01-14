@@ -1,6 +1,6 @@
 #pragma once
 #include "Window.hpp"
-#include "snake/World.hpp"
+#include "state/GameStateManager.hpp"
 
 class Game {
 public:
@@ -18,6 +18,6 @@ private:
 	Window window;
 	sf::Clock clock;
 	sf::Time elapsedTime;
-	
-	World world;
+
+	GameStateManager gsm;
 };

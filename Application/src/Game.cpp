@@ -1,7 +1,6 @@
 #include "Game.hpp"
 
-Game::Game() : window("The Snake", sf::Vector2u(800, 600)), world(800, 600, 20) {
-	
+Game::Game() : window("The Snake", sf::Vector2u(800, 600)) {
 }
 
 Game::~Game() {}
@@ -19,17 +18,17 @@ void Game::Run() {
 
 void Game::update() {
 	window.update();
-	world.update(elapsedTime.asSeconds());
+	gsm.update(elapsedTime.asSeconds());
 }
 
 void Game::handleInput() {
-	world.handleInput();
+	gsm.handleInput();
 }
 
 void Game::render() {
 	window.beginDraw();
 
-	world.draw(window.getRenderWindow());
+	gsm.draw(window.getRenderWindow());
 
 	window.endDraw();
 }
