@@ -1,24 +1,22 @@
 #pragma once
 
-//#include <SFML/Graphics.hpp>
-
-#include "GameState.hpp"
-#include "../snake/World.hpp"
+#include "../state/GameState.hpp"
+#include "MenuItem.hpp"
 
 namespace sf {
 	class RenderWindow;
 }
 
-class SnakeGameState : public GameState {
+class MenuState : public GameState {
 
 public:
-
-	SnakeGameState(GameStateManager* gsm);
+	MenuState(GameStateManager* gsm);
 
 	void update(float delta) override;
 	void draw(sf::RenderWindow& window) override;
 	void handleInput() override;
 
 private:
-	World world;
+	MenuItem menuItems[4];
+	sf::Font font;
 };

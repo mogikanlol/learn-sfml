@@ -1,9 +1,16 @@
 #include "GameStateManager.hpp"
 #include "SnakeGameState.hpp"
+#include "../menu/MenuState.hpp"
 
 GameStateManager::GameStateManager()
 {
-	this->activeState = new SnakeGameState(this);
+	auto snakeGameState = new SnakeGameState(this);
+	auto menuGameState = new MenuState(this);
+	states.insert({ GameStateName::SNAKE_GAME, snakeGameState });
+	states.insert({ GameStateName::MENU, menuGameState });
+
+
+	this->activeState = menuGameState;
 }
 
 GameStateManager::~GameStateManager()
@@ -30,7 +37,10 @@ void GameStateManager::setState(GameStateName name)
 	switch (name)
 	{
 	case GameStateName::SNAKE_GAME:
-		this->activeState = new SnakeGameState(this);
+		this->activeState = states[GameStateName::SNAKE_GAME];
+		break;
+	case GameStateName::MENU:
+		this->activeState = states[GameStateName::MENU];
 		break;
 	default:
 		break;

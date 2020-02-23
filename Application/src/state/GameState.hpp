@@ -2,6 +2,10 @@
 
 class GameStateManager;
 
+namespace sf {
+	class RenderWindow;
+}
+
 class GameState {
 
 public:
@@ -9,9 +13,9 @@ public:
 	virtual void draw(sf::RenderWindow& window) = 0;
 	virtual void handleInput() = 0;
 
-public:
+protected:
 	GameState(GameStateManager* gsm): gsm(gsm) {};
 
-private:
+protected:
 	GameStateManager* gsm;
 };

@@ -1,10 +1,15 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <map>
+
+namespace sf {
+	class RenderWindow;
+}
 
 class GameState;
 
 enum class GameStateName {
+	MENU,
 	SNAKE_GAME
 };
 
@@ -22,4 +27,5 @@ private:
 	
 	GameState* activeState;
 	
+	std::map<GameStateName, GameState*> states;
 };
