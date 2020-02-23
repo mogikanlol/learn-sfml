@@ -52,7 +52,8 @@ project "Application"
 
 		postbuildcommands
 		{
-			("{COPY} dependencies/SFML2/dll/debug/ ../bin/" .. outputdir .."/Application/")
+			("{COPY} dependencies/SFML2/dll/debug/ ../bin/" .. outputdir .."/Application/"),
+			("{COPY} dependencies/arial.ttf ../bin/" .. outputdir .."/Application/")
 		}
 
 	filter "configurations:Release"
@@ -69,5 +70,6 @@ project "Application"
 
 		postbuildcommands
 		{
-			("{COPY} dependencies/SFML2/dll/release/ ../bin/" .. outputdir .."/Application/")
+			("{COPY} dependencies/SFML2/dll/release/ ../bin/" .. outputdir .."/Application/"),
+			("{COPY} dependencies/arial.ttf ../bin/" .. outputdir .."/Application/")
 		}
